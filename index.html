@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f0f0f0;
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Student</h1>
+        <form method="POST" action="/add">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="roll" placeholder="Roll Number" required>
+            <input type="text" name="dept" placeholder="Department" required>
+            <input type="submit" value="Add">
+        </form>
+
+        <h2>All Students</h2>
+        <ul>
+            {% for s in students %}
+                <li>
+    {{ s.name }} - {{ s.roll }} - {{ s.dept }}
+    <form action="/delete/{{ s._id }}" method="POST" style="display:inline;">
+        <button type="submit" style="margin-left: 10px; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer;">
+            Delete
+        </button>
+        <form onsubmit="return confirm('Are you sure?');" ...>
+
+    </form>
+</li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
